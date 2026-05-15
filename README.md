@@ -5,6 +5,43 @@ Dual-mode multi-modal system on MIMIC-CXR:
 - **Report Generation** — chest X-ray → structured radiology report (MedGemma 4B).
 - **QA Mode** — clinical question + X-ray → retrieved similar reports (ColPali or CLIP) → grounded answer (MedGemma 4B).
 
+## Architecture
+
+```mermaid
+flowchart TD
+    A[data/archive.zip<br/>MIMIC-CXR Kaggle subset] --> B[src/data/loader.py<br/>parse + clean + sample]
+    B --> C[(data/processed/<br/>mini_dataset.csv)]
+    B --> D[(data/images/<br/>~2000 JPGs)]
+
+    C --> E[notebooks/02_synthetic_qa_gen.ipynb<br/>Kaggle T4]
+    E -->|MedGemma 1.5| F[(data/synthetic_qa/<br/>qa_dataset.csv<br/>1497 pairs)]
+
+    D --> G[rag/build_indexes.py]
+    G -->|BiomedCLIP| H[(vector_db/clip/<br/>embeddings.pt)]
+    G -->|ColPali| I[(vector_db/colpali/<br/>embeddings.pt)]
+
+    H --> J[rag/retriever.py]
+    I --> J
+
+    J --> K{FastAPI<br/>api/main.py}
+    M[MedGemma 1.5<br/>src/models/medgemma_utils.py] --> K
+    K -->|POST /report| N[🧾 Report Generation]
+    K -->|POST /qa| O[💬 QA Mode RAG]
+
+    N --> P[Streamlit UI<br/>frontend/app.py]
+    O --> P
+
+    F -.eval gold.-> Q[evaluation/run_eval.py]
+    Q --> R[(results/<br/>comparison.csv)]
+
+    style F fill:#e1f5ff,color:#000
+    style C fill:#e1f5ff,color:#000
+    style H fill:#fff4e1,color:#000
+    style I fill:#fff4e1,color:#000
+    style R fill:#e8f5e9,color:#000
+    style P fill:#f3e5f5,color:#000
+```
+
 ## Repo layout
 
 ```
