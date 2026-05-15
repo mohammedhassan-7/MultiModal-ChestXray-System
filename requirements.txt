@@ -1,0 +1,37 @@
+# FastAPI Backend
+fastapi
+uvicorn
+python-multipart
+pydantic
+
+# Streamlit Frontend
+streamlit
+requests
+Pillow
+
+# ML and Models
+torch
+torchvision
+transformers
+accelerate
+bitsandbytes
+peft
+sentencepiece
+
+# RAG & Vector Database
+faiss-cpu
+chromadb
+langchain
+langchain-community
+colpali-engine     # use vidore/colpali-v1.2-merged (LoRA pre-merged - avoids LoRA-key mismatch with newer transformers)
+open_clip_torch
+pyarrow
+
+# Data Processing & Evaluation
+pandas
+numpy
+tqdm
+scikit-learn
+rouge-score
+nltk
+matplotlib   # used by notebooks 01 / 03 for charts

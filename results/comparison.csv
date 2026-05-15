@@ -1,0 +1,5 @@
+,bleu,rougeL,token_f1,recall_at_3
+no_rag,0.0673,0.2619,0.2464,
+clip,0.1217,0.3856,0.3869,1.0
+colpali,0.1391,0.3778,0.3786,1.0
+report_gen_medgemma,0.0294,0.2045,0.2405,

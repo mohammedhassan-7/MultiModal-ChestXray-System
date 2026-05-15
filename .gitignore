@@ -1,0 +1,36 @@
+# Data: ignore everything except the small synthetic QA CSV and the mini sample
+/data/*
+!/data/synthetic_qa/
+/data/synthetic_qa/*
+!/data/synthetic_qa/qa_dataset.csv
+!/data/processed/
+/data/processed/*
+!/data/processed/mini_dataset.csv
+
+# Model weights
+*.pt
+*.pth
+*.h5
+*.safetensors
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Environment
+.env
+venv/
+.venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+.vscode/
+.ruff_cache/
+
+.claude
