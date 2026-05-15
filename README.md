@@ -29,7 +29,7 @@ pip install -r requirements.txt
 # extras: colpali-engine, open_clip_torch, pyarrow
 ```
 
-Download the MIMIC-CXR subset from Kaggle and place `archive.zip` in `data/`.
+Download the MIMIC-CXR subset from Kaggle — [MIMIC-CXR dataset on Kaggle](https://www.kaggle.com/datasets/simhadrisadaram/mimic-cxr-dataset?authuser=0) — and place `archive.zip` in `data/`.
 
 ## Pipeline
 
